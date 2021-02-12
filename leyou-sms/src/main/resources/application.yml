@@ -4,16 +4,15 @@ spring:
   application:
     name: sms-service
   rabbitmq:
-#    host: 192.168.2.126
-    host: 39.105.136.112
+    host: 192.168.2.126
     username: leyou
     password: leyou
     virtual-host: /leyou
 
 leyou:
   sms:
-    accessKeyId: LTAIo7k2bTXllcD6  # 你自己的accessKeyId
-    accessKeySecret: XD1xJ5DRXMxI7jOE5HN5Mdt7jUgswo # 你自己的AccessKeySecret
+    accessKeyId:   # 你自己的accessKeyId
+    accessKeySecret:  # 你自己的AccessKeySecret
     signName: 乐优 # 签名名称
     verifyCodeTemplate: SMS_172737264 # 模板名称
 eureka:
