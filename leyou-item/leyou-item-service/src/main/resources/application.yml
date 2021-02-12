@@ -5,7 +5,6 @@ spring:
     name: item-service
   datasource:
     url: jdbc:mysql://localhost:3306/leyou
-#    url: jdbc:mysql://39.105.136.112:8066/leyou?characterEncoding=utf-8
     username: root
     password: 123456
     hikari:
@@ -13,8 +12,7 @@ spring:
       maximum-pool-size: 9 # 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
   rabbitmq:
     virtual-host: /leyou
-#    host: 192.168.2.126
-    host: 39.105.136.112
+    host: 192.168.2.126
     username: leyou
     password: leyou
     template:
