@@ -7,8 +7,7 @@ spring:
     host: 192.168.2.126
   data:
     mongodb:
-#      uri: mongodb://192.168.2.126:27017/leyou
-      uri: mongodb://39.105.136.112:27017/leyou
+      uri: mongodb://192.168.2.126:27017/leyou
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 5
