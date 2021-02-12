@@ -7,15 +7,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: 123456
-#    url: jdbc:mysql://127.0.0.1:3306/leyou
-    url: jdbc:mysql://39.105.136.112:8066/leyou?characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/leyou
   redis:
-#    host: 192.168.2.126
-    host: 39.105.136.112
+    host: 192.168.2.126
+
   rabbitmq:
     virtual-host: /leyou
-#    host: 192.168.2.126
-    host: 39.105.136.112
+    host: 192.168.2.126
     username: leyou
     password: leyou
 eureka:
