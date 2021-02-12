@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE mycat:schema SYSTEM "schema.dtd">
+<mycat:schema xmlns:mycat="http://io.mycat/">
+
+	<schema name="leyou" checkSQLschema="false" sqlMaxLimit="100">
+		<!-- auto sharding by id (long) -->
+	<table name="tb_brand" dataNode="dn"/>
+	<table name="tb_category" dataNode="dn"/>
+	<table name="tb_category_brand" dataNode="dn"/>
+	<table name="tb_order" dataNode="dn1,dn2,dn3" rule="snow-orderid" />
+	<table name="tb_order_detail" dataNode="dn1,dn2,dn3" rule="snow-orderid" />
+	<table name="tb_order_status" dataNode="dn1,dn2,dn3" rule="snow-orderid" />
+	<table name="tb_pay_log" dataNode="dn1,dn2,dn3" rule="snow-orderid" />
+	<table name="tb_sku" dataNode="dn1,dn2,dn3" rule="auto-id" />
+	<table name="tb_spec_group" dataNode="dn"/>
+	<table name="tb_spec_param" dataNode="dn"/>
+	<table name="tb_spu" dataNode="dn1,dn2,dn3" rule="auto-id" />
+	<table name="tb_spu_detail" dataNode="dn1,dn2,dn3" rule="auto-spuid" />
+	<table name="tb_stock" dataNode="dn1,dn2,dn3" rule="auto-skuid" />
+	<table name="tb_user" dataNode="dn1,dn2,dn3" rule="auto-id" />
+	
+	
+	</schema>
+	<dataNode name="dn" dataHost="localhost1" database="leyou0" />
+	<dataNode name="dn1" dataHost="localhost1" database="leyou1" />
+	<dataNode name="dn2" dataHost="localhost1" database="leyou2" />
+	<dataNode name="dn3" dataHost="localhost1" database="leyou3" />
+	<!--<dataNode name="dn4" dataHost="sequoiadb1" database="SAMPLE" />
+	 <dataNode name="jdbc_dn1" dataHost="jdbchost" database="db1" />
+	<dataNode	name="jdbc_dn2" dataHost="jdbchost" database="db2" />
+	<dataNode name="jdbc_dn3" 	dataHost="jdbchost" database="db3" /> -->
+	<dataHost name="localhost1" maxCon="1000" minCon="10" balance="0"
+			  writeType="0" dbType="mysql" dbDriver="native" switchType="1"  slaveThreshold="100">
+		<heartbeat>select user()</heartbeat>
+		<!-- can have multi write hosts -->
+		<writeHost host="hostM1" url="localhost:3306" user="root"
+				   password="123456">
+			<!-- can have multi read hosts -->
+		</writeHost>
+	</dataHost>
+	<!--
+		<dataHost name="sequoiadb1" maxCon="1000" minCon="1" balance="0" dbType="sequoiadb" dbDriver="jdbc">
+		<heartbeat> 		</heartbeat>
+		 <writeHost host="hostM1" url="sequoiadb://1426587161.dbaas.sequoialab.net:11920/SAMPLE" user="jifeng" 	password="jifeng"></writeHost>
+		 </dataHost>
+
+	  <dataHost name="oracle1" maxCon="1000" minCon="1" balance="0" writeType="0" 	dbType="oracle" dbDriver="jdbc"> <heartbeat>select 1 from dual</heartbeat>
+		<connectionInitSql>alter session set nls_date_format='yyyy-mm-dd hh24:mi:ss'</connectionInitSql>
+		<writeHost host="hostM1" url="jdbc:oracle:thin:@127.0.0.1:1521:nange" user="base" 	password="123456" > </writeHost> </dataHost>
+
+		<dataHost name="jdbchost" maxCon="1000" 	minCon="1" balance="0" writeType="0" dbType="mongodb" dbDriver="jdbc">
+		<heartbeat>select 	user()</heartbeat>
+		<writeHost host="hostM" url="mongodb://192.168.0.99/test" user="admin" password="123456" ></writeHost> </dataHost>
+
+		<dataHost name="sparksql" maxCon="1000" minCon="1" balance="0" dbType="spark" dbDriver="jdbc">
+		<heartbeat> </heartbeat>
+		 <writeHost host="hostM1" url="jdbc:hive2://feng01:10000" user="jifeng" 	password="jifeng"></writeHost> </dataHost> -->
+
+	<!-- <dataHost name="jdbchost" maxCon="1000" minCon="10" balance="0" dbType="mysql"
+		dbDriver="jdbc"> <heartbeat>select user()</heartbeat> <writeHost host="hostM1"
+		url="jdbc:mysql://localhost:3306" user="root" password="123456"> </writeHost>
+		</dataHost> -->
+</mycat:schema>
